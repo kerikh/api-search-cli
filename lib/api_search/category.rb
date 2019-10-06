@@ -1,5 +1,3 @@
-require 'api_search/client'
-
 module ApiSearch
   class Category 
     attr_accessor :name

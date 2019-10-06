@@ -1,8 +1,3 @@
-require 'faraday'
-require 'json'
-require 'pry'
-require 'pry-moves'
-
 module ApiSearch
   class Client
     include Faraday

@@ -1,7 +1,3 @@
-require_relative './client'
-require 'paint/pa'
-require 'ranger'
-
 module ApiSearch
   class API
 
@@ -76,7 +72,7 @@ module ApiSearch
       self.delete   # added temp fix for a bug that would incorrectly pull random api after viewing categories.
       
       ApiSearch::Client.get_sample_api     
-      pa "-"*40, :yellow
+      pa "-"*50, :yellow
       pa "----------------Random Api-----------------", :green
       
       API.all.each_with_index do |api,index|

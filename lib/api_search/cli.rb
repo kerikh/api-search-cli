@@ -9,7 +9,7 @@ require 'pry-moves'
 module ApiSearch
   class CLI 
 
-    def call 
+    def call
       welcome
       menu 
     end
@@ -49,21 +49,24 @@ module ApiSearch
     end
       
     def list_categories
-      ApiSearch::Client.get_categories
-      pa "-" * 50, :yellow
-      pa "       ------- Categories -------   ", :green
+      if ApiSearch::Category.all.size == 0
+        ApiSearch::Client.get_categories
+      else
+        pa "-" * 50, :yellow
+        pa "       ------- Categories -------   ", :green
+        
+        ApiSearch::Category.all.each.with_index do |cat, i|
+          puts "#{i+1}. #{cat.name.titleize}"
+        end
+
+        pa "-" * 50, :yellow
+        pa "What Api Category would you like to Browse?", :blue 
+        puts "Enter Number>>"
       
-      ApiSearch::Category.all.each.with_index do |cat, i|
-        puts "#{i+1}. #{cat.name.titleize}"
+        user_input = gets.chomp.to_i 
+      
+        select_category(user_input)
       end
-      
-      pa "-" * 50, :yellow
-      pa "What Api Category would you like to Browse?", :blue 
-      puts "Enter Number>>"
-      
-      user_input = gets.chomp.to_i 
-      
-      select_category(user_input)
     end
 
 
@@ -82,9 +85,12 @@ module ApiSearch
     end
 
     def browse_all
-      ApiSearch::Client.get_all_apis
-      ApiSearch::API.print_all
-      browse_all_range
+      if ApiSearch::API.all == 0
+        ApiSearch::Client.get_all_apis
+      else
+        ApiSearch::API.print_all
+        browse_all_range
+      end
     end
 
     def browse_all_range
