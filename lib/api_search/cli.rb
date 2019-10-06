@@ -1,10 +1,6 @@
 require_relative './client'
 require_relative './api'
 require_relative './category'
-require 'pry'
-require 'pry-moves'
-
-
 
 module ApiSearch
   class CLI 
@@ -85,7 +81,7 @@ module ApiSearch
     end
 
     def browse_all
-      if ApiSearch::API.all == 0
+      if ApiSearch::API.all.size == 0
         ApiSearch::Client.get_all_apis
       else
         ApiSearch::API.print_all
@@ -94,17 +90,21 @@ module ApiSearch
     end
 
     def browse_all_range
-      pa "-"*50, :yellow
-      pa "There are a total of #{ApiSearch::API.all.length} results in this list.", :green
-      pa "To see more results, please select a range...", :green
-      pa "Example: 25-30  or 50-100"
-    
-      input = gets.chomp.sub('-','..')
-      range = input.to_s
-      
-      ApiSearch::API.print_all(range)
-     
-      range_extra_menu
+      if ApiSearch::API.all.size == 0
+        ApiSearch::Client.get_all_apis
+      else
+        pa "-"*50, :yellow
+        pa "There are a total of #{ApiSearch::API.all.length} results in this list.", :green
+        pa "To see more results, please select a range...", :green
+        pa "Example: 25-30  or 50-100"
+        
+        input = gets.chomp.sub('-','..')
+        range = input.to_s
+        
+        ApiSearch::API.print_all(range)
+        
+        range_extra_menu
+      end
     end
 
     def range_extra_menu
