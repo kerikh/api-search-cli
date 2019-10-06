@@ -110,7 +110,6 @@ module ApiSearch
       input = gets.chomp.capitalize
       
       menu_std(input)
-        
     end
 
     def print_random_api
@@ -128,30 +127,32 @@ module ApiSearch
 
 
     def menu_std(input) 
-      case input 
-      when 'menu'
-        menu 
-      when 'exit'
-        goodbye
-      when 'help'
-        menu 
-      when 'Y'
-        browse_all_range
-      when 'N'
-        menu
-      when 'category'
-        list_categories
-      when '1'
-        list_categories
-      when '2'
-        browse_all
-      when '3'
-        print_random_api
-      else 
-        input = ''
-        pa "I dont understand your command. Please enter a valid selection", :red 
-        puts "Type menu or exit"
-        input = gets.chomp.downcase
+      loop do
+        case input 
+        when 'menu'
+          menu 
+        when 'exit'
+          goodbye
+        when 'help'
+          menu 
+        when 'Y'
+          browse_all_range
+        when 'N'
+          menu
+        when 'category'
+          list_categories
+        when '1'
+          list_categories
+        when '2'
+          browse_all
+        when '3'
+          print_random_api
+        else 
+          input = ''
+          pa "I dont understand your command. Please enter a valid selection", :red 
+          puts "Type menu or exit"
+          input = gets.chomp.downcase
+        end
       end
     end
     
@@ -165,4 +166,4 @@ module ApiSearch
   end
 end
 
-puts ApiSearch::CLI.new.call
+#puts ApiSearch::CLI.new.call
