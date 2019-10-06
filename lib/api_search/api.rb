@@ -73,7 +73,8 @@ module ApiSearch
     end
 
     def self.random_api 
-      self.delete # added temp fix for a bug that would incorrectly pull random api after viewing categories.
+      self.delete   # added temp fix for a bug that would incorrectly pull random api after viewing categories.
+      
       ApiSearch::Client.get_sample_api     
       pa "-"*40, :yellow
       pa "----------------Random Api-----------------", :green

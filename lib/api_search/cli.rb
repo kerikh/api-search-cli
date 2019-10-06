@@ -32,14 +32,15 @@ module ApiSearch
     end
   
     def menu 
+      pa "-"*50, :yellow
       puts "Hello! Ready to find an API for your next project?"
       puts "Lets Get Started!"
       pa "Choose your Destiny...", :yellow
-      pa "-" * 40, :yellow
+      pa "-" * 50, :yellow
       puts " 1. Search by Category"
       puts " 2. Browse All APIs"
       puts " 3. Random API"
-      pa "-" * 40, :yellow
+      pa "-" * 50, :yellow
       pa "Enter Number>>"
       
       input = gets.chomp
@@ -49,14 +50,14 @@ module ApiSearch
       
     def list_categories
       ApiSearch::Client.get_categories
-      pa "-" * 40, :yellow
-      pa "------- Categories -------", :green
+      pa "-" * 50, :yellow
+      pa "       ------- Categories -------   ", :green
       
       ApiSearch::Category.all.each.with_index do |cat, i|
         puts "#{i+1}. #{cat.name.titleize}"
       end
       
-      pa "-" * 40, :yellow
+      pa "-" * 50, :yellow
       pa "What Api Category would you like to Browse?", :blue 
       puts "Enter Number>>"
       
@@ -158,7 +159,7 @@ module ApiSearch
 
     def goodbye
       pa "-"*50, :green
-      pa "Bye! Thanks for Browsing API Search!", :blue
+      pa "Bye! Thanks for Browsing API Search...See You Soon!", :blue
       pa "-"*50, :green
       abort
     end
