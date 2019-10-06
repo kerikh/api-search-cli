@@ -1,4 +1,3 @@
-require 'pry'
 module ApiSearch
   class Category 
     attr_accessor :name
