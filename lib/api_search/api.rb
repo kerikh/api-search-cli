@@ -30,15 +30,18 @@ module ApiSearch
       @@all.clear 
     end
 
-    def self.print_api_info
-      pa "-----Api List from the Category: #{API.all.first.category}-----", :green
-      pa "Total # of Results: #{API.all.length}", :green    
+    def self.print_api_info(user_cat)
+      valid_category = [user_cat.downcase]
+      cat_apis = []
+      API.all.select{|api| valid_category.include?(api.category.downcase) }.map{|api| cat_apis.push(api) }
+      pa "-----Api List from the Category: #{cat_apis[0].category}-----", :green
+      pa "Total # of Results: #{cat_apis.size}", :green    
       
-      API.all.each_with_index do |api,index|
-        if api.title 
+      cat_apis.each.with_index do |api,index|
+        if api.title
           puts "#{index+1} - #{api.title.titleize}"
-          puts "     #{api.description}"
-          puts "     #{api.url}"
+          puts "    #{api.description}"
+          puts "    #{api.url}"
           puts " Cors: #{api.cors} - Auth: #{api.auth} - Https: #{api.https}"
           pa "-" * 50, :blue 
         end
@@ -78,9 +81,9 @@ module ApiSearch
       API.all.each_with_index do |api,index|
         if api.title 
           puts "#{index+1} - #{api.title.titleize}"
-          puts "     #{api.description}"
-          puts "     #{api.url}"
-          puts "     Category: #{api.category}"
+          puts "    #{api.description}"
+          puts "    #{api.url}"
+          puts "    Category: #{api.category}"
           puts " Cors: #{api.cors} - Auth: #{api.auth} - Https: #{api.https}"
           pa "-" * 50, :blue 
         end

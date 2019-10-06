@@ -67,21 +67,18 @@ module ApiSearch
 
 
     def select_category(user_input)
-      cat = ApiSearch::Category.all[user_input-1.to_i].name.downcase 
-      ApiSearch::Client.get_api_by_category(cat)
-      
-      ApiSearch::API.print_api_info
-      
+      ApiSearch::Category.find_by_category(user_input)
+            
       pa "Would you like to choose another Category or Return to the Main Menu?", :green 
       pa "Type category or menu"
       
-      input = gets.chomp.downcase
+      input = gets.chomp 
       
       menu_std(input)
     end
 
     def browse_all
-      if ApiSearch::API.all.size == 0
+      if ApiSearch::API.all.size <= 500
         ApiSearch::Client.get_all_apis
       else
         ApiSearch::API.print_all
@@ -112,7 +109,7 @@ module ApiSearch
       pa "Type Y for yes or N for no.", :green
       puts "Enter Selection>>"
       
-      input = gets.chomp.downcase
+      input = gets.chomp.titleize
       
       menu_std(input)
     end
@@ -141,9 +138,9 @@ module ApiSearch
           goodbye
         when 'help'
           menu 
-        when 'y'
+        when 'Y'
           browse_all_range
-        when 'n'
+        when 'N'
           menu
         when 'category'
           list_categories
