@@ -30,6 +30,9 @@ module ApiSearch
       @@all << self
     end
 
+    def self.delete 
+      @@all.clear 
+    end
 
     def self.print_api_info
       pa "-----Api List from the Category: #{API.all.first.category}-----", :green
@@ -52,7 +55,7 @@ module ApiSearch
       rescue ArgumentError
         pa "Oops! That wasn't a valid range!", :red
       else
-        pa "-"*15, :yellow
+        pa "-"*50, :yellow
         pa "-------------Browse All APIs---------------"
         pa "Total # of APIs: #{API.all.length}", :green
 
@@ -69,11 +72,11 @@ module ApiSearch
       end
     end
 
-    def self.random_api
-      ApiSearch::Client.get_sample_api
-      
-      pa "-"*15, :yellow
-      pa "-------------Random Api---------------"
+    def self.random_api 
+      self.delete # added temp fix for a bug that would incorrectly pull random api after viewing categories.
+      ApiSearch::Client.get_sample_api     
+      pa "-"*40, :yellow
+      pa "----------------Random Api-----------------", :green
       
       API.all.each_with_index do |api,index|
         if api.title 

@@ -42,7 +42,7 @@ module ApiSearch
       pa "-" * 40, :yellow
       pa "Enter Number>>"
       
-      input = gets.chomp.downcase
+      input = gets.chomp
       
       menu_std(input)
     end
@@ -60,15 +60,14 @@ module ApiSearch
       pa "What Api Category would you like to Browse?", :blue 
       puts "Enter Number>>"
       
-      input = gets.chomp.to_i 
+      user_input = gets.chomp.to_i 
       
-      select_category(input)
+      select_category(user_input)
     end
 
 
-    def select_category(input)
-      user_input = input-1.to_i
-      cat = ApiSearch::Category.all[user_input.to_i].name.downcase 
+    def select_category(user_input)
+      cat = ApiSearch::Category.all[user_input-1.to_i].name.downcase 
       ApiSearch::Client.get_api_by_category(cat)
       
       ApiSearch::API.print_api_info
@@ -112,6 +111,7 @@ module ApiSearch
     end
 
     def print_random_api
+      ApiSearch::Client.get_sample_api
       ApiSearch::API.random_api
       
       pa "Would you like to do another Random API search?", :green
