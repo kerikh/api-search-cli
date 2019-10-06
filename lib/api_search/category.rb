@@ -5,15 +5,6 @@ module ApiSearch
     attr_accessor :name
     @@all = []
 
-    #def self.new_from_source
-      #categories = ApiSearch::Client.new.get_categories
-      # categories = ApiSearch::Client.get_categories
-      # categories.each_with_index do |cat, index|
-      #self.new(categories)
-      #categories.each_with_index do |cat, index|
-       # puts "#{index+1}. #{cat}"
-    #end
-
     def initialize(name)
       @name = name 
       @@all << self 

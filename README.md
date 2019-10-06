@@ -1,8 +1,6 @@
 # ApiSearch
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/api_search`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Public API Search is a CLI to find an API for your next project. You can browse all APIs, browse APIs by selecting a Category first,  or even get a random API. Details of Each API include the Name, Description, Link, Auth type, and Cors Support. 
 
 ## Installation
 
@@ -22,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Once gem is installed, you can run the CLI anytime in your console:
+
+    $ api_search
 
 ## Development
 
