@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require 'api_search'
+
+ApiSearch::CLI.new.call
