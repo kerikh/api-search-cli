@@ -30,6 +30,7 @@ module ApiSearch
       @@all << self
     end
 
+
     def self.print_api_info
       pa "-----Api List from the Category: #{API.all.first.category}-----", :green
       pa "Total # of Results: #{API.all.length}", :green    
@@ -37,8 +38,8 @@ module ApiSearch
       API.all.each_with_index do |api,index|
         if api.title 
           puts "#{index+1} - #{api.title.titleize}"
-          puts "    #{api.description}"
-          puts "    #{api.url}"
+          puts "     #{api.description}"
+          puts "     #{api.url}"
           puts " Cors: #{api.cors} - Auth: #{api.auth} - Https: #{api.https}"
           pa "-" * 50, :blue 
         end
@@ -46,18 +47,24 @@ module ApiSearch
     end
 
     def self.print_all(range = "1..25")
-      pa "-"*15, :yellow
-      pa "-------------Browse All APIs---------------"
-      pa "Total # of APIs: #{API.all.length}", :green
-      
-      API.all[range.to_range].each_with_index do |api,index|
-        if api.title 
-          puts "#{index+1} - #{api.title.titleize}"
-          puts "    #{api.description}"
-          puts "    #{api.url}"
-          puts "    Category: #{api.category}"
-          puts " Cors: #{api.cors} - Auth: #{api.auth} - Https: #{api.https}"
-          pa "-" * 50, :blue 
+      begin
+        valid_range = range.to_range
+      rescue ArgumentError
+        pa "Oops! That wasn't a valid range!", :red
+      else
+        pa "-"*15, :yellow
+        pa "-------------Browse All APIs---------------"
+        pa "Total # of APIs: #{API.all.length}", :green
+
+        API.all[valid_range].each_with_index do |api,index|   
+          if api.title 
+            puts "#{index+1} - #{api.title.titleize}"
+            puts "     #{api.description}"
+            puts "     #{api.url}"
+            puts "     Category: #{api.category}"
+            puts " Cors: #{api.cors} - Auth: #{api.auth} - Https: #{api.https}"
+            pa "-" * 50, :blue 
+          end
         end
       end
     end
@@ -71,9 +78,9 @@ module ApiSearch
       API.all.each_with_index do |api,index|
         if api.title 
           puts "#{index+1} - #{api.title.titleize}"
-          puts "    #{api.description}"
-          puts "    #{api.url}"
-          puts "    Category: #{api.category}"
+          puts "     #{api.description}"
+          puts "     #{api.url}"
+          puts "     Category: #{api.category}"
           puts " Cors: #{api.cors} - Auth: #{api.auth} - Https: #{api.https}"
           pa "-" * 50, :blue 
         end

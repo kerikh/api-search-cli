@@ -42,7 +42,7 @@ module ApiSearch
       pa "-" * 40, :yellow
       pa "Enter Number>>"
       
-      input = gets.chomp
+      input = gets.chomp.downcase
       
       menu_std(input)
     end
@@ -68,7 +68,7 @@ module ApiSearch
 
     def select_category(input)
       user_input = input-1.to_i
-      cat = ApiSearch::Category.all[user_input.to_i].name 
+      cat = ApiSearch::Category.all[user_input.to_i].name.downcase 
       ApiSearch::Client.get_api_by_category(cat)
       
       ApiSearch::API.print_api_info
@@ -76,7 +76,7 @@ module ApiSearch
       pa "Would you like to choose another Category or Return to the Main Menu?", :green 
       pa "Type category or menu"
       
-      input = gets.chomp 
+      input = gets.chomp.downcase
       
       menu_std(input)
     end
@@ -92,7 +92,7 @@ module ApiSearch
       pa "There are a total of #{ApiSearch::API.all.length} results in this list.", :green
       pa "To see more results, please select a range...", :green
       pa "Example: 25-30  or 50-100"
-     
+    
       input = gets.chomp.sub('-','..')
       range = input.to_s
       
@@ -106,7 +106,7 @@ module ApiSearch
       pa "Type Y for yes or N for no.", :green
       puts "Enter Selection>>"
       
-      input = gets.chomp.titleize
+      input = gets.chomp.downcase
       
       menu_std(input)
     end
@@ -134,9 +134,9 @@ module ApiSearch
           goodbye
         when 'help'
           menu 
-        when 'Y'
+        when 'y'
           browse_all_range
-        when 'N'
+        when 'n'
           menu
         when 'category'
           list_categories
