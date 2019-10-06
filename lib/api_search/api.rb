@@ -36,7 +36,7 @@ module ApiSearch
       
       API.all.each_with_index do |api,index|
         if api.title 
-          puts "#{index+1} - #{api.title.capitalize}"
+          puts "#{index+1} - #{api.title.titleize}"
           puts "    #{api.description}"
           puts "    #{api.url}"
           puts " Cors: #{api.cors} - Auth: #{api.auth} - Https: #{api.https}"
@@ -52,7 +52,7 @@ module ApiSearch
       
       API.all[range.to_range].each_with_index do |api,index|
         if api.title 
-          puts "#{index+1} - #{api.title.capitalize}"
+          puts "#{index+1} - #{api.title.titleize}"
           puts "    #{api.description}"
           puts "    #{api.url}"
           puts "    Category: #{api.category}"
@@ -70,7 +70,7 @@ module ApiSearch
       
       API.all.each_with_index do |api,index|
         if api.title 
-          puts "#{index+1} - #{api.title.capitalize}"
+          puts "#{index+1} - #{api.title.titleize}"
           puts "    #{api.description}"
           puts "    #{api.url}"
           puts "    Category: #{api.category}"

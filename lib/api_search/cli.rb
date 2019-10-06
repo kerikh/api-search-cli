@@ -53,7 +53,7 @@ module ApiSearch
       pa "------- Categories -------", :green
       
       ApiSearch::Category.all.each.with_index do |cat, i|
-        puts "#{i+1}. #{cat.name.capitalize}"
+        puts "#{i+1}. #{cat.name.titleize}"
       end
       
       pa "-" * 40, :yellow
@@ -106,7 +106,7 @@ module ApiSearch
       pa "Type Y for yes or N for no.", :green
       puts "Enter Selection>>"
       
-      input = gets.chomp.capitalize
+      input = gets.chomp.titleize
       
       menu_std(input)
     end
