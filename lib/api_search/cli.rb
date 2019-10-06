@@ -10,7 +10,6 @@ module ApiSearch
   class CLI 
 
     def call 
-      ApiSearch::Client.get_categories
       welcome
       menu 
     end
@@ -159,7 +158,7 @@ module ApiSearch
 
     def goodbye
       pa "-"*50, :green
-      pa "Bye! Thanks for Browsing ApiSearch!", :blue
+      pa "Bye! Thanks for Browsing API Search!", :blue
       pa "-"*50, :green
       abort
     end
