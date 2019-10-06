@@ -34,6 +34,7 @@ module ApiSearch
       valid_category = [user_cat.downcase]
       cat_apis = []
       API.all.select{|api| valid_category.include?(api.category.downcase) }.map{|api| cat_apis.push(api) }
+      
       pa "-----Api List from the Category: #{cat_apis[0].category}-----", :green
       pa "Total # of Results: #{cat_apis.size}", :green    
       
