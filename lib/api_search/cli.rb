@@ -158,12 +158,12 @@ module ApiSearch
     
 
     def goodbye
-      abort
       pa "-"*50, :green
       pa "Bye! Thanks for Browsing ApiSearch!", :blue
       pa "-"*50, :green
+      abort
     end
   end
 end
 
-#puts ApiSearch::CLI.new.call
+puts ApiSearch::CLI.new.call
